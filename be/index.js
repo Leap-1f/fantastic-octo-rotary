@@ -7,11 +7,11 @@ import cloudinary from "cloudinary";
 import bcrypt from "bcrypt";
 
 // Importing the routes
-import userRouter from "./src/router/user";
-import productRouter from "./src/router/product";
-import orderRouter from "./src/router/order";
-import reviewRouter from "./src/router/review";
-import categoryRouter from "./src/router/category";
+import userRouter from "./src/router/user.js";
+import productRouter from "./src/router/product.js";
+import orderRouter from "./src/router/order.js";
+import reviewRouter from "./src/router/review.js";
+import categoryRouter from "./src/router/category.js";
 
 dotenv.config();
 const port = 8080;
@@ -38,11 +38,11 @@ let {
   EMAILPASS,
   EMAILTOKEN,
 } = process.env;
-cloudinary.config({
-  cloud_name: CLOUDINARYUSER,
-  api_key: CLOUDINARYKEY,
-  api_secret: CLOUDINARYSECRET,
-});
+// cloudinary.config({
+//   cloud_name: CLOUDINARYUSER,
+//   api_key: CLOUDINARYKEY,
+//   api_secret: CLOUDINARYSECRET,
+// });
 var transport = nodemailer.createTransport({
   service: "Mail.ru",
   auth: {
@@ -63,13 +63,13 @@ mongoose
   });
 // mongodb connection
 
-cloudinary.api.resources(function (error, result) {
-  if (error) {
-    console.error("Error retrieving Cloudinary resources:", error);
-  } else {
-    const imageUrls = result.resources.map((resource) => resource.secure_url);
-  }
-});
+// cloudinary.api.resources(function (error, result) {
+//   if (error) {
+//     console.error("Error retrieving Cloudinary resources:", error);
+//   } else {
+//     const imageUrls = result.resources.map((resource) => resource.secure_url);
+//   }
+// });
 //cloudinary connection
 
 // Initialize the app
