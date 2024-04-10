@@ -5,12 +5,27 @@ import dotenv from "dotenv";
 import nodemailer from "nodemailer";
 import cloudinary from "cloudinary";
 import bcrypt from "bcrypt";
+
+// Importing the routes
+import userRouter from "./src/router/user";
+import productRouter from "./src/router/product";
+import orderRouter from "./src/router/order";
+import reviewRouter from "./src/router/review";
+import categoryRouter from "./src/router/category";
+
 dotenv.config();
 const port = 8080;
 const app = express();
 app.use(cors());
 app.use(express.json());
 dotenv.config();
+
+//using the routes
+app.use("/user", userRouter);
+app.use("/product", productRouter);
+app.use("/order", orderRouter);
+app.use("/review", reviewRouter);
+app.use("/category", categoryRouter);
 
 // dotenv configuration.
 let {
