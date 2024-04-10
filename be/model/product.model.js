@@ -37,6 +37,10 @@ const ProductSchema = new mongoose.Schema(
       required: true,
       // maybe this will need to be a array instead of just a string due to the different coupons.
     },
+    stars: {
+      type: Number,
+      required: true,
+    },
   },
   { timestamps: true }
 );

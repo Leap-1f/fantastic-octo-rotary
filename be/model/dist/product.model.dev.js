@@ -1,0 +1,60 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Product = void 0;
+
+var _mongoose = _interopRequireDefault(require("mongoose"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+var ProductSchema = new _mongoose["default"].Schema({
+  productName: {
+    type: String,
+    required: true
+  },
+  description: {
+    type: String,
+    required: true
+  },
+  price: {
+    type: Number,
+    required: true
+  },
+  image: {
+    type: Array,
+    required: true // image url
+    // https://images.unsplash.com/photo-1500648799150-ef5bd3ee4e0f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60
+
+  },
+  discountPrecent: {
+    type: Number,
+    required: true // If it is 0 show no discount at  all on the frontend. But always have the value in the model.
+
+  },
+  viewCount: {
+    type: Number,
+    "default": 0 // Not sure how to implement this. Maybe when a user views the product, we send a request to the server to update the view count.
+
+  },
+  reviews: [{
+    type: _mongoose["default"].Schema.Types.ObjectId,
+    ref: "Review"
+  }],
+  coupon: {
+    type: String,
+    required: true // maybe this will need to be a array instead of just a string due to the different coupons.
+
+  },
+  stars: {
+    type: Number,
+    required: true
+  }
+}, {
+  timestamps: true
+});
+
+var Product = _mongoose["default"].model("Product", ProductSchema);
+
+exports.Product = Product;
