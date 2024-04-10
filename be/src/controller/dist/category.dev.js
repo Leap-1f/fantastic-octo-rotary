@@ -114,67 +114,69 @@ var createCategory = function createCategory(req, res) {
 exports.createCategory = createCategory;
 
 var deleteCategory = function deleteCategory(req, res) {
-  var category;
+  var id, category;
   return regeneratorRuntime.async(function deleteCategory$(_context4) {
     while (1) {
       switch (_context4.prev = _context4.next) {
         case 0:
-          _context4.prev = 0;
-          _context4.next = 3;
-          return regeneratorRuntime.awrap(_categoryModel.Category.findByIdAndDelete(req.params.id));
+          id = req.body.id;
+          _context4.prev = 1;
+          _context4.next = 4;
+          return regeneratorRuntime.awrap(_categoryModel.Category.findByIdAndDelete(id));
 
-        case 3:
+        case 4:
           category = _context4.sent;
           res.status(200).json(category);
-          _context4.next = 10;
+          _context4.next = 11;
           break;
 
-        case 7:
-          _context4.prev = 7;
-          _context4.t0 = _context4["catch"](0);
+        case 8:
+          _context4.prev = 8;
+          _context4.t0 = _context4["catch"](1);
           res.status(400).json({
             message: _context4.t0.message
           });
 
-        case 10:
+        case 11:
         case "end":
           return _context4.stop();
       }
     }
-  }, null, null, [[0, 7]]);
+  }, null, null, [[1, 8]]);
 };
 
 exports.deleteCategory = deleteCategory;
 
 var getProducts = function getProducts(req, res) {
-  var products;
+  var id, products;
   return regeneratorRuntime.async(function getProducts$(_context5) {
     while (1) {
       switch (_context5.prev = _context5.next) {
         case 0:
-          _context5.prev = 0;
-          _context5.next = 3;
-          return regeneratorRuntime.awrap(_categoryModel.Category.findById(req.params.id).populate("products"));
+          id = req.body.id;
+          _context5.prev = 1;
+          _context5.next = 4;
+          return regeneratorRuntime.awrap(_categoryModel.Category.findById(id).populate("products"));
 
-        case 3:
+        case 4:
           products = _context5.sent;
           res.status(200).json(products);
-          _context5.next = 10;
+          _context5.next = 11;
           break;
 
-        case 7:
-          _context5.prev = 7;
-          _context5.t0 = _context5["catch"](0);
+        case 8:
+          _context5.prev = 8;
+          _context5.t0 = _context5["catch"](1);
           res.status(400).json({
             message: _context5.t0.message
           });
 
-        case 10:
+        case 11:
         case "end":
           return _context5.stop();
       }
     }
-  }, null, null, [[0, 7]]);
+  }, null, null, [[1, 8]]);
 };
 
 exports.getProducts = getProducts;

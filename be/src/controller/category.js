@@ -29,8 +29,10 @@ export const createCategory = async (req, res) => {
   }
 };
 export const deleteCategory = async (req, res) => {
+  const { id } = req.body;
+
   try {
-    const category = await Category.findByIdAndDelete(req.params.id);
+    const category = await Category.findByIdAndDelete(id);
     res.status(200).json(category);
   } catch (err) {
     res.status(400).json({ message: err.message });
@@ -38,10 +40,9 @@ export const deleteCategory = async (req, res) => {
 };
 
 export const getProducts = async (req, res) => {
+  const { id } = req.body;
   try {
-    const products = await Category.findById(req.params.id).populate(
-      "products"
-    );
+    const products = await Category.findById(id).populate("products");
     res.status(200).json(products);
   } catch (err) {
     res.status(400).json({ message: err.message });
