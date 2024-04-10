@@ -70,10 +70,7 @@ cloudinary.api.resources(function (error, result) {
     const imageUrls = result.resources.map((resource) => resource.secure_url);
   }
 });
-
 //cloudinary connection
-
-const saltRounds = 10;
 
 // Initialize the app
 app.get("/", (req, res) => {
