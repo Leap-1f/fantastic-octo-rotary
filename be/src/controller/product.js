@@ -1,0 +1,78 @@
+import { Product } from "../../model/product.model.js";
+// this gets a specific product by id.
+export const getProduct = async (req, res) => {
+  try {
+    const product = await Product.findById(req.params.id);
+    if (!product) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+    return res.status(200).json(product);
+  } catch (error) {
+    return res.status(500).json({ message: "Internal server error" });
+  }
+};
+// this gets all products.
+export const getProducts = async (req, res) => {
+  try {
+    const products = await Product.find({});
+    if (!products) {
+      return res.status(404).json({ message: "No products found" });
+    } else {
+      return res.status(200).json(products);
+    }
+  } catch (error) {
+    return res.status(500).json({ message: "Internal server error" });
+  }
+};
+// If you need to get products by category then refer to the category controller.
+
+// this updates a product with the body data.
+export const updateProduct = async (req, res) => {
+  const { id } = req.body;
+  const {
+    productName,
+    description,
+    price,
+    image,
+    discountPrecent,
+    viewCount,
+    reviews,
+    stars,
+    thumbnail,
+  } = req.body;
+  try {
+    const product = await Product.findOneAndUpdate(
+      { _id: id },
+      {
+        productName: productName,
+        description: description,
+        thumbnail: thumbnail,
+        price: price,
+        image: image,
+        discountPrecent: discountPrecent,
+        viewCount: viewCount,
+        reviews: reviews,
+        stars: stars,
+      }
+    );
+    return res.status(200).json(product);
+  } catch (error) {
+    return res.status(500).json({ message: "Internal server error" });
+  }
+};
+// this creates a new product. Probably should make the image require and the thumbnail as optional. But for now it is not.
+export const createProduct = async (req, res) => {
+  const { productName, description, price, image, discountPrecent } = req.body;
+  try {
+    const product = await Product.create({
+      productName: productName,
+      description: description,
+      price: price,
+      image: image,
+      discountPrecent: discountPrecent,
+    });
+    return res.status(201).json(product);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};

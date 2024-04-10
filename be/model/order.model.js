@@ -3,12 +3,26 @@ import {
   ORDER_PROCESS,
   ORDER_PAYMENT,
   ORDER_PAYMENT_METHOD,
+  Districts,
 } from "../constant/order.constants";
 const OrderSchema = new mongoose.Schema(
   {
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
+      required: true,
+    },
+    phoneNumber: {
+      type: String,
+      required: true,
+    },
+    deliveryDate: {
+      type: Date,
+      required: true,
+      //
+    },
+    postalCode: {
+      type: String,
       required: true,
     },
     OrderNumber: {
@@ -48,6 +62,19 @@ const OrderSchema = new mongoose.Schema(
       required: true,
       enum: Object.values(ORDER_PROCESS),
       // Ordered, PreparingToShip, Shipped, Delivered
+    },
+    District: {
+      type: String,
+      required: true,
+      enum: Object.values(Districts),
+    },
+    Khoroo: {
+      type: String,
+      required: true,
+    },
+    description: {
+      type: String,
+      required: true,
     },
   },
   { timestamps: true }
