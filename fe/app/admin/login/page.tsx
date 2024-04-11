@@ -14,13 +14,7 @@ export default function Page() {
     >
       <Typography variant="h4">Бүртгүүлэх</Typography>
       <TextField label="Name" variant="outlined"></TextField>
-      <Button
-        variant="contained"
-        sx={{"&:hover": {
-          : ""
-        }}}
-        size="large"
-      >
+      <Button variant="contained" size="large">
         Submit
       </Button>
     </Stack>
