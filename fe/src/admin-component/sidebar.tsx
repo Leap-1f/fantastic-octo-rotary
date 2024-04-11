@@ -42,10 +42,9 @@ export function Sidebar() {
       direction="column"
       spacing={2}
       sx={{
-        width: "11%",
-        height: "100vh",
+        width: "14%",
+        height: "90vh",
         display: "flex",
-        pt: "5vh",
       }}
     >
       {icons.map((icon) => (
