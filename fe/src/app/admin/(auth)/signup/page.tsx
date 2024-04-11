@@ -3,7 +3,7 @@ import { FaArrowRight } from "react-icons/fa6";
 import { TextField, Button, Box, Stack, Typography } from "@mui/material";
 import Snackbar, { SnackbarOrigin } from "@mui/material/Snackbar";
 import { useState, useEffect } from "react";
-
+import Link from "next/link";
 export default function Page() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -37,6 +37,7 @@ export default function Page() {
         name,
         email,
         password,
+        role: "admin",
       }),
     });
     const data = await res.json();
@@ -197,6 +198,12 @@ export default function Page() {
             message={error}
           />
         </Stack>
+        <Typography sx={{ fontSize: "16px", fontWeight: "300" }}>
+          Already have an account?
+        </Typography>
+        <Typography sx={{ fontSize: "16px", fontWeight: "300" }}>
+          <Link href="/admin/signin">Sign in</Link>
+        </Typography>
       </Stack>
     </Box>
   );
