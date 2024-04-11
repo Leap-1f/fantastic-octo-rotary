@@ -5,9 +5,9 @@ import {
   updateProduct,
   createProduct,
 } from "../controller/product.js";
-import { verifyToken } from "../middleware/authMiddleware.js";
-productRouter.use(verifyToken);
+import { verifyToken } from "../../middleware/authMiddleware.js";
 const productRouter = Router();
+productRouter.use(verifyToken);
 productRouter.get("/", getProducts);
 productRouter.get("/:id", getProduct);
 productRouter.post("/create", verifyToken, createProduct);

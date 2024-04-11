@@ -26,29 +26,14 @@ app.use("/review", reviewRouter);
 app.use("/category", categoryRouter);
 
 // dotenv configuration.
-let {
-  DBUSER,
-  DBPASS,
-  CLOUDINARYSECRET,
-  CLOUDINARYKEY,
-  CLOUDINARYUSER,
-  EMAILUSER,
-  EMAILPASS,
-  EMAILTOKEN,
-} = process.env;
+let { DBUSER, DBPASS, CLOUDINARYSECRET, CLOUDINARYKEY, CLOUDINARYUSER } =
+  process.env;
 // cloudinary.config({
 //   cloud_name: CLOUDINARYUSER,
 //   api_key: CLOUDINARYKEY,
 //   api_secret: CLOUDINARYSECRET,
 // });
-var transport = nodemailer.createTransport({
-  service: "Mail.ru",
-  auth: {
-    user: EMAILUSER,
-    pass: EMAILTOKEN,
-    auth: EMAILPASS,
-  },
-});
+
 const MONGO_CONNECTION_STRING = `mongodb+srv://${DBUSER}:${DBPASS}@foodapp.pk3ugl6.mongodb.net/`;
 
 mongoose
