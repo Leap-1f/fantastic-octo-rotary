@@ -6,10 +6,10 @@ export default function DashboardLayout({
 }) {
   return (
     <section>
-      <Sidebar />
-      <nav></nav>
-
-      {children}
+      <section className="flex flex-row h-screen w-screen">
+        <Sidebar />
+        {children}
+      </section>
     </section>
   );
 }

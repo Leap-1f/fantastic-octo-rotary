@@ -1,4 +1,6 @@
 "use client";
+import { FaArrowRight } from "react-icons/fa6";
+
 import { TextField, Button, Box, Stack, Typography } from "@mui/material";
 export default function Page() {
   return (
@@ -66,8 +68,9 @@ export default function Page() {
                 bgcolor: "black",
               },
             }}
+            endIcon={<FaArrowRight />}
           >
-            Submit
+            Дараах
           </Button>
         </Stack>
       </Stack>
