@@ -1,5 +1,9 @@
 import { User } from "../../model/user.model.js";
 import bcrypt from "bcrypt";
+import dotenv from "dotenv";
+import jwt from "jsonwebtoken";
+dotenv.config();
+let { JWT_SECRET, JWT_EXPIRES } = process.env;
 const saltRounds = 10;
 async function hashPassword(ePassword) {
   const password = ePassword;
@@ -34,7 +38,7 @@ export const createUser = async (req, res) => {
 export const loginUser = async (req, res) => {
   const { email, password } = req.body;
   try {
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email: email });
     if (!user) {
       throw new Error("User not found");
     }
@@ -42,8 +46,19 @@ export const loginUser = async (req, res) => {
     if (!isPasswordCorrect) {
       throw new Error("Invalid password");
     }
-    // const token = await user.generateToken();
-    const token = { name: "lolwut" };
+    jwt.sign(
+      {
+        id: user._id,
+      },
+      JWT_SECRET,
+      { expiresIn: JWT_EXPIRES },
+      (err, token) => {
+        if (err) {
+          throw new Error("Error creating token");
+        }
+        res.status(200).json({ token });
+      }
+    );
     res.status(200).json({ token });
   } catch (err) {
     res.status(400).json({ message: err.message });

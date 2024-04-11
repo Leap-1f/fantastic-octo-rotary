@@ -43,7 +43,6 @@ export function Sidebar() {
       spacing={2}
       sx={{
         width: "11%",
-        position: "fixed",
         height: "100vh",
         display: "flex",
         pt: "5vh",
