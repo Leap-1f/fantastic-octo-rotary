@@ -41,10 +41,8 @@ export const updateProduct = async (req, res) => {
     price,
     image,
     discountPrecent,
-    viewCount,
-    reviews,
-    stars,
-    thumbnail,
+    category,
+    topCategory,
   } = req.body;
   try {
     const product = await Product.findOneAndUpdate(
@@ -52,13 +50,11 @@ export const updateProduct = async (req, res) => {
       {
         productName: productName,
         description: description,
-        thumbnail: thumbnail,
         price: price,
         image: image,
         discountPrecent: discountPrecent,
-        viewCount: viewCount,
-        reviews: reviews,
-        stars: stars,
+        category: category,
+        topCategory: topCategory,
       }
     );
     return res.status(200).json(product);

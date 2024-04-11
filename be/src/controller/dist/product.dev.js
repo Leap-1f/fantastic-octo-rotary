@@ -111,14 +111,14 @@ var getProducts = function getProducts(req, res) {
 exports.getProducts = getProducts;
 
 var updateProduct = function updateProduct(req, res) {
-  var id, _req$body, productName, description, price, image, discountPrecent, viewCount, reviews, stars, thumbnail, product;
+  var id, _req$body, productName, description, price, image, discountPrecent, category, topCategory, product;
 
   return regeneratorRuntime.async(function updateProduct$(_context3) {
     while (1) {
       switch (_context3.prev = _context3.next) {
         case 0:
           id = req.body.id;
-          _req$body = req.body, productName = _req$body.productName, description = _req$body.description, price = _req$body.price, image = _req$body.image, discountPrecent = _req$body.discountPrecent, viewCount = _req$body.viewCount, reviews = _req$body.reviews, stars = _req$body.stars, thumbnail = _req$body.thumbnail;
+          _req$body = req.body, productName = _req$body.productName, description = _req$body.description, price = _req$body.price, image = _req$body.image, discountPrecent = _req$body.discountPrecent, category = _req$body.category, topCategory = _req$body.topCategory;
           _context3.prev = 2;
           _context3.next = 5;
           return regeneratorRuntime.awrap(_productModel.Product.findOneAndUpdate({
@@ -126,13 +126,11 @@ var updateProduct = function updateProduct(req, res) {
           }, {
             productName: productName,
             description: description,
-            thumbnail: thumbnail,
             price: price,
             image: image,
             discountPrecent: discountPrecent,
-            viewCount: viewCount,
-            reviews: reviews,
-            stars: stars
+            category: category,
+            topCategory: topCategory
           }));
 
         case 5:
