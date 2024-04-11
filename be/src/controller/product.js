@@ -1,16 +1,22 @@
 import { Product } from "../../model/product.model.js";
 // this gets a specific product by id.
+// used when you click on a product icon in the frontend. works like http://localhost:8080/product/getProduct?id=idhere and just use map to href that. No double quoteation.
 export const getProduct = async (req, res) => {
+  const { id } = req.query;
   try {
-    const product = await Product.findById(req.params.id);
+    const product = await Product.findById(id);
+    const viewIncrease = await Product.findByIdAndUpdate(id, {
+      $inc: { viewCount: 1 },
+    });
     if (!product) {
       return res.status(404).json({ message: "Product not found" });
     }
     return res.status(200).json(product);
   } catch (error) {
-    return res.status(500).json({ message: "Internal server error" });
+    return res.status(500).json({ error: error.message });
   }
 };
+
 // this gets all products.
 export const getProducts = async (req, res) => {
   try {
@@ -28,17 +34,15 @@ export const getProducts = async (req, res) => {
 
 // this updates a product with the body data.
 export const updateProduct = async (req, res) => {
-  const { id } = req.body;
   const {
+    id,
     productName,
     description,
     price,
     image,
     discountPrecent,
-    viewCount,
-    reviews,
-    stars,
-    thumbnail,
+    category,
+    topCategory,
   } = req.body;
   try {
     const product = await Product.findOneAndUpdate(
@@ -46,13 +50,11 @@ export const updateProduct = async (req, res) => {
       {
         productName: productName,
         description: description,
-        thumbnail: thumbnail,
         price: price,
         image: image,
         discountPrecent: discountPrecent,
-        viewCount: viewCount,
-        reviews: reviews,
-        stars: stars,
+        category: category,
+        topCategory: topCategory,
       }
     );
     return res.status(200).json(product);
@@ -62,7 +64,16 @@ export const updateProduct = async (req, res) => {
 };
 // this creates a new product. Probably should make the image require and the thumbnail as optional. But for now it is not.
 export const createProduct = async (req, res) => {
-  const { productName, description, price, image, discountPrecent } = req.body;
+  const {
+    productName,
+    description,
+    price,
+    image,
+    discountPrecent,
+    category,
+    topCategory,
+    quantityRemaining,
+  } = req.body;
   try {
     const product = await Product.create({
       productName: productName,
@@ -70,6 +81,9 @@ export const createProduct = async (req, res) => {
       price: price,
       image: image,
       discountPrecent: discountPrecent,
+      category: category,
+      topCategory: topCategory,
+      quantityRemaining: quantityRemaining,
     });
     return res.status(201).json(product);
   } catch (error) {
