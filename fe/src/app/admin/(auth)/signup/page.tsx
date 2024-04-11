@@ -183,7 +183,7 @@ export default function Page() {
                 register();
                 console.log("register");
               } else {
-                handleClick({ vertical: "top", horizontal: "center" });
+                handleClick;
                 console.log("handleclick");
               }
             }}
