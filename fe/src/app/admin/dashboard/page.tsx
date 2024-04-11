@@ -1,5 +1,6 @@
+"use client";
 import { Stack, Box, Button } from "@mui/material";
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 import LoginLayout from "./layout";
 export default function Page() {
   const [viewTypes, setViewTypes] = useState([

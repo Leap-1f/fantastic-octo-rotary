@@ -7,6 +7,7 @@ export default function DashboardLayout({
   return (
     <section>
       <section className="flex flex-row h-screen w-screen">
+        {/* header */}
         <Sidebar />
         {children}
       </section>
