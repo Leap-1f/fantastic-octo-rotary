@@ -34,8 +34,8 @@ export const getProducts = async (req, res) => {
 
 // this updates a product with the body data.
 export const updateProduct = async (req, res) => {
-  const { id } = req.body;
   const {
+    id,
     productName,
     description,
     price,
@@ -72,6 +72,7 @@ export const createProduct = async (req, res) => {
     discountPrecent,
     category,
     topCategory,
+    quantityRemaining,
   } = req.body;
   try {
     const product = await Product.create({
@@ -82,6 +83,7 @@ export const createProduct = async (req, res) => {
       discountPrecent: discountPrecent,
       category: category,
       topCategory: topCategory,
+      quantityRemaining: quantityRemaining,
     });
     return res.status(201).json(product);
   } catch (error) {

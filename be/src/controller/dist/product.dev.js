@@ -111,16 +111,15 @@ var getProducts = function getProducts(req, res) {
 exports.getProducts = getProducts;
 
 var updateProduct = function updateProduct(req, res) {
-  var id, _req$body, productName, description, price, image, discountPrecent, category, topCategory, product;
+  var _req$body, id, productName, description, price, image, discountPrecent, category, topCategory, product;
 
   return regeneratorRuntime.async(function updateProduct$(_context3) {
     while (1) {
       switch (_context3.prev = _context3.next) {
         case 0:
-          id = req.body.id;
-          _req$body = req.body, productName = _req$body.productName, description = _req$body.description, price = _req$body.price, image = _req$body.image, discountPrecent = _req$body.discountPrecent, category = _req$body.category, topCategory = _req$body.topCategory;
-          _context3.prev = 2;
-          _context3.next = 5;
+          _req$body = req.body, id = _req$body.id, productName = _req$body.productName, description = _req$body.description, price = _req$body.price, image = _req$body.image, discountPrecent = _req$body.discountPrecent, category = _req$body.category, topCategory = _req$body.topCategory;
+          _context3.prev = 1;
+          _context3.next = 4;
           return regeneratorRuntime.awrap(_productModel.Product.findOneAndUpdate({
             _id: id
           }, {
@@ -133,36 +132,36 @@ var updateProduct = function updateProduct(req, res) {
             topCategory: topCategory
           }));
 
-        case 5:
+        case 4:
           product = _context3.sent;
           return _context3.abrupt("return", res.status(200).json(product));
 
-        case 9:
-          _context3.prev = 9;
-          _context3.t0 = _context3["catch"](2);
+        case 8:
+          _context3.prev = 8;
+          _context3.t0 = _context3["catch"](1);
           return _context3.abrupt("return", res.status(500).json({
             message: "Internal server error"
           }));
 
-        case 12:
+        case 11:
         case "end":
           return _context3.stop();
       }
     }
-  }, null, null, [[2, 9]]);
+  }, null, null, [[1, 8]]);
 }; // this creates a new product. Probably should make the image require and the thumbnail as optional. But for now it is not.
 
 
 exports.updateProduct = updateProduct;
 
 var createProduct = function createProduct(req, res) {
-  var _req$body2, productName, description, price, image, discountPrecent, category, topCategory, product;
+  var _req$body2, productName, description, price, image, discountPrecent, category, topCategory, quantityRemaining, product;
 
   return regeneratorRuntime.async(function createProduct$(_context4) {
     while (1) {
       switch (_context4.prev = _context4.next) {
         case 0:
-          _req$body2 = req.body, productName = _req$body2.productName, description = _req$body2.description, price = _req$body2.price, image = _req$body2.image, discountPrecent = _req$body2.discountPrecent, category = _req$body2.category, topCategory = _req$body2.topCategory;
+          _req$body2 = req.body, productName = _req$body2.productName, description = _req$body2.description, price = _req$body2.price, image = _req$body2.image, discountPrecent = _req$body2.discountPrecent, category = _req$body2.category, topCategory = _req$body2.topCategory, quantityRemaining = _req$body2.quantityRemaining;
           _context4.prev = 1;
           _context4.next = 4;
           return regeneratorRuntime.awrap(_productModel.Product.create({
@@ -172,7 +171,8 @@ var createProduct = function createProduct(req, res) {
             image: image,
             discountPrecent: discountPrecent,
             category: category,
-            topCategory: topCategory
+            topCategory: topCategory,
+            quantityRemaining: quantityRemaining
           }));
 
         case 4:

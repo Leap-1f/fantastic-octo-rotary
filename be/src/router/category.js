@@ -4,11 +4,13 @@ import {
   getCategory,
   createCategory,
   deleteCategory,
+  getProducts,
 } from "../controller/category.js";
 
 const categoryRouter = Router();
 categoryRouter.get("/", getCategories);
 categoryRouter.get("/:id", getCategory);
-categoryRouter.post("/", createCategory);
-categoryRouter.delete("/:id", deleteCategory);
+categoryRouter.post("/create", createCategory);
+categoryRouter.post("/delete", deleteCategory);
+categoryRouter.post("/products", getProducts);
 export default categoryRouter;
