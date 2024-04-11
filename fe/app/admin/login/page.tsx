@@ -16,7 +16,9 @@ export default function Page() {
       <TextField label="Name" variant="outlined"></TextField>
       <Button
         variant="contained"
-        sx={{widtg, {}}}
+        sx={{"&:hover": {
+          : ""
+        }}}
         size="large"
       >
         Submit
