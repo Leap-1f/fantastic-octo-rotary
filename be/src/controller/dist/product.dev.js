@@ -158,13 +158,13 @@ var updateProduct = function updateProduct(req, res) {
 exports.updateProduct = updateProduct;
 
 var createProduct = function createProduct(req, res) {
-  var _req$body2, productName, description, price, image, discountPrecent, product;
+  var _req$body2, productName, description, price, image, discountPrecent, category, topCategory, product;
 
   return regeneratorRuntime.async(function createProduct$(_context4) {
     while (1) {
       switch (_context4.prev = _context4.next) {
         case 0:
-          _req$body2 = req.body, productName = _req$body2.productName, description = _req$body2.description, price = _req$body2.price, image = _req$body2.image, discountPrecent = _req$body2.discountPrecent;
+          _req$body2 = req.body, productName = _req$body2.productName, description = _req$body2.description, price = _req$body2.price, image = _req$body2.image, discountPrecent = _req$body2.discountPrecent, category = _req$body2.category, topCategory = _req$body2.topCategory;
           _context4.prev = 1;
           _context4.next = 4;
           return regeneratorRuntime.awrap(_productModel.Product.create({
@@ -172,7 +172,9 @@ var createProduct = function createProduct(req, res) {
             description: description,
             price: price,
             image: image,
-            discountPrecent: discountPrecent
+            discountPrecent: discountPrecent,
+            category: category,
+            topCategory: topCategory
           }));
 
         case 4:

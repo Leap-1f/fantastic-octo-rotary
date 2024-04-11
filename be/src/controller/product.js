@@ -68,7 +68,15 @@ export const updateProduct = async (req, res) => {
 };
 // this creates a new product. Probably should make the image require and the thumbnail as optional. But for now it is not.
 export const createProduct = async (req, res) => {
-  const { productName, description, price, image, discountPrecent } = req.body;
+  const {
+    productName,
+    description,
+    price,
+    image,
+    discountPrecent,
+    category,
+    topCategory,
+  } = req.body;
   try {
     const product = await Product.create({
       productName: productName,
@@ -76,6 +84,8 @@ export const createProduct = async (req, res) => {
       price: price,
       image: image,
       discountPrecent: discountPrecent,
+      category: category,
+      topCategory: topCategory,
     });
     return res.status(201).json(product);
   } catch (error) {
