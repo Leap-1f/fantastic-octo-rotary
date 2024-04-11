@@ -42,10 +42,10 @@ export default function Page() {
           </Stack>
           <Stack direction="column" spacing={1} sx={{ width: "100%" }}>
             <Typography sx={{ fontSize: "16px", fontWeight: "300" }}>
-              Таны нэр
+              Таны password
             </Typography>
             <TextField
-              placeholder="Нэр"
+              placeholder="Password"
               variant="outlined"
               sx={{ width: "100%", bgcolor: "#F7F7F8" }}
             />
