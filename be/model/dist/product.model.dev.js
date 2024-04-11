@@ -43,15 +43,37 @@ var ProductSchema = new _mongoose["default"].Schema({
     "default": 0 // Not sure how to implement this. Maybe when a user views the product, we send a request to the server to update the view count.
 
   },
-  reviews: [{
-    type: _mongoose["default"].Schema.Types.ObjectId,
-    ref: "Review"
-  }],
   stars: {
     type: Number,
     required: true,
     "default": 0
-  }
+  },
+  quantityRemaining: {
+    type: Number,
+    required: true
+  },
+  category: {
+    type: [_mongoose["default"].Schema.Types.ObjectId],
+    ref: "Category",
+    required: true
+  },
+  topCategory: {
+    type: _mongoose["default"].Schema.Types.ObjectId,
+    ref: "Category",
+    required: true
+  },
+  // made because the product creation has the categories built in the frontend.
+  tags: {
+    type: Array
+  },
+  additionalInfo: {
+    type: Array
+  },
+  soldAmount: {
+    type: Number,
+    "default": 0
+  } // update this every time someone buys that product
+
 }, {
   timestamps: true
 });

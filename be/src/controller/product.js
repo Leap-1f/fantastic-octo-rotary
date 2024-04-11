@@ -1,16 +1,22 @@
 import { Product } from "../../model/product.model.js";
 // this gets a specific product by id.
+// used when you click on a product icon in the frontend. works like http://localhost:8080/product/getProduct?id=idhere and just use map to href that. No double quoteation.
 export const getProduct = async (req, res) => {
+  const { id } = req.query;
   try {
-    const product = await Product.findById(req.params.id);
+    const product = await Product.findById(id);
+    const viewIncrease = await Product.findByIdAndUpdate(id, {
+      $inc: { viewCount: 1 },
+    });
     if (!product) {
       return res.status(404).json({ message: "Product not found" });
     }
     return res.status(200).json(product);
   } catch (error) {
-    return res.status(500).json({ message: "Internal server error" });
+    return res.status(500).json({ error: error.message });
   }
 };
+
 // this gets all products.
 export const getProducts = async (req, res) => {
   try {
